@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         contactRelation = currentUser.getRelation("contact");
         ParseQuery contactQuery = contactRelation.getQuery();
-//        ArrayList<ParseUser> contacts = new ArrayList();
         try {
             List<ParseObject> contacts = contactQuery.find();
             mUsers = contacts;
@@ -115,53 +114,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } catch (Exception e) {
 
         }
-
-//        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("contact");
-//        query.addDescendingOrder("createdAt");
-//        query.findInBackground(new FindCallback<ParseObject>() {
-//            @Override
-//            public void done(List<ParseObject> contacts, ParseException e) {
-//
-//                if (e == null) {
-//                    // We found messages!
-//                    mContacts = contacts;
-////                    mMessages = messages;
-//
-//                    String[] usernames = new String[contacts.size()];
-//                    int i = 0;
-//                    for(ParseObject contact : mContacts) {
-//                        usernames[i] = contact.getString("userName");
-//                        i++;
-//                    }
-//
-//                    listView.setAdapter(new MessageAdapter(MainActivity.this, R.layout.message_item, mContacts));
-//                }
-//            }
-//        });
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        ParseObject contact = mContacts.get(position);
         ParseObject user = mUsers.get(position);
         String receiverName = user.getString("username");
-//        String receiverName = contact.getString("contactName");
-
-//        String messageType = message.getString("fileType");
-//        ParseFile file = message.getParseFile("file");
-//        Uri fileUri = Uri.parse(file.getUrl());
-//        String receiverName = message.getString("receiverName");
 
         Intent intent = new Intent(this, ConversationActivity.class);
         intent.putExtra("receiverName", receiverName);
         startActivity(intent);
-
-//        if (messageType.equals("image")) {
-//            // view the image
-//            Intent intent = new Intent(this, ViewImageActivity.class);
-//            intent.setData(fileUri);
-//            startActivity(intent);
-//        }
     }
 
     private void navigateToLogin() {
@@ -189,13 +151,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.menu_edit_contact:
                 Intent intent = new Intent(MainActivity.this,EditContactActivity.class);
                 startActivity(intent);
-                break;
-
-            case R.id.action_camera:
-                Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                imageFile = createImageFile();
-                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-                startActivityForResult(takePhotoIntent, 1234);
                 break;
         }
         return true;

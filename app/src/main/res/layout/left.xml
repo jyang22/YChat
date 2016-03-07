@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/msgr"
+        android:id="@+id/textView_msgr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -15,6 +15,21 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:text="Sampleleft"
-        android:textColor="#000" />
+        android:textColor="#000"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:id="@+id/imageView_msgr"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="left"
+        android:background="@drawable/textview"
+        android:text="Sampleleft"
+        android:textColor="#000"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
+
 
 </RelativeLayout>
