@@ -37,7 +37,8 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="psmZoRFCzoKzHGwBq3Ho49hMLdRo7Nu1aUsS5ODv" />
 
-        <activity android:name=".PersonalInfoActivity"></activity>
+        <activity android:name=".PersonalInfoActivity" />
+        <activity android:name=".ContactActivity"></activity>
     </application>
 
 </manifest>

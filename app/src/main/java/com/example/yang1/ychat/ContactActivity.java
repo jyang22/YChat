@@ -1,15 +1,11 @@
 package com.example.yang1.ychat;
 
-import android.app.ListActivity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,32 +21,27 @@ import com.parse.SaveCallback;
 
 import java.util.List;
 
-/**
- * Created by Yang1 on 2/25/16.
- */
-public class EditContactActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ContactActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    protected ParseRelation<ParseUser> contact;
-    protected ParseUser curUser;
-    protected List<ParseUser> users;
-    protected ListView lv;
-
+    ListView listView;
+    ParseUser curUser;
+    ParseRelation contact;
+    List<ParseUser> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_contact);
-        // Show the Up button in the action bar.
+        setContentView(R.layout.activity_contact);
 
-        lv = (ListView) findViewById(android.R.id.list);
-        lv.setOnItemClickListener(this);
+        listView = (ListView)findViewById(R.id.listview_contact);
+        listView.setOnItemClickListener(this);
 
         // buttons
         Button btn_chat = (Button) findViewById(R.id.btn_chat);
         btn_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EditContactActivity.this, MainActivity.class);
+                Intent intent = new Intent(ContactActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +50,7 @@ public class EditContactActivity extends AppCompatActivity implements AdapterVie
         btn_me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EditContactActivity.this, PersonalInfoActivity.class);
+                Intent intent = new Intent(ContactActivity.this, PersonalInfoActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,15 +80,17 @@ public class EditContactActivity extends AppCompatActivity implements AdapterVie
                         i++;
                     }
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                            EditContactActivity.this,
-                            android.R.layout.simple_list_item_checked,
+                            ContactActivity.this,
+                            android.R.layout.simple_list_item_multiple_choice,
                             usernames);
-                    lv.setAdapter(adapter);
-
+                    listView.setAdapter(adapter);
+                    listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                    listView.setItemChecked(2, true);
+                    listView.setItemsCanFocus(false);
                     addFriendCheckmarks();
 
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(EditContactActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ContactActivity.this);
                     builder.setMessage(e.getMessage())
                             .setTitle("Error")
                             .setPositiveButton(android.R.string.ok, null);
@@ -109,69 +102,47 @@ public class EditContactActivity extends AppCompatActivity implements AdapterVie
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // This ID represents the Home or Up button. In the case of this
-                // activity, the Up button is shown. Use NavUtils to allow users
-                // to navigate up one level in the application structure. For
-                // more details, see the Navigation pattern on Android Design:
-                //
-                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-                //
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (!lv.isItemChecked(position)) {
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+        if (!listView.isItemChecked(position)) {
+            //
+            listView.clearFocus();
+            listView.post(new Runnable() {
+                @Override
+                public void run() {
+                    listView.requestFocusFromTouch();
+                    listView.setSelection(position);
+                    listView.requestFocus();
+                }
+            });
+            //
             contact.add(users.get(position));
-            Toast.makeText(EditContactActivity.this, "added", Toast.LENGTH_LONG).show();
-            Log.i("contact","add");
-        }
-        else {
+//            listView.setItemChecked(position, true);
+//            Toast.makeText(ContactActivity.this, String.valueOf(listView.isItemChecked(position)) + "one", Toast.LENGTH_LONG).show();
+        } else {
             // remove the friend
+            listView.clearFocus();
+            listView.post(new Runnable() {
+                @Override
+                public void run() {
+                    listView.requestFocusFromTouch();
+                    listView.setSelection(position);
+                    listView.requestFocus();
+                }
+            });
             contact.remove(users.get(position));
-            Toast.makeText(EditContactActivity.this, "removed", Toast.LENGTH_LONG).show();
-            Log.i("contact", "remove");
-
+//            listView.setItemChecked(position, false);
+//            Toast.makeText(ContactActivity.this, String.valueOf(listView.isItemChecked(position)) + "two", Toast.LENGTH_LONG).show();
         }
 
         curUser.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e("Error", e.getMessage());
+                    Toast.makeText(ContactActivity.this, "saved", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
-
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        super.onListItemClick(l, v, position, id);
-//
-//        if (getListView().isItemChecked(position)) {
-//            // add the friend
-//            contact.add(users.get(position));
-//        }
-//        else {
-//            // remove the friend
-//            contact.remove(users.get(position));
-//        }
-//
-//        curUser.saveInBackground(new SaveCallback() {
-//            @Override
-//            public void done(ParseException e) {
-//                if (e != null) {
-//                    Log.e("Error", e.getMessage());
-//                }
-//            }
-//        });
-//    }
 
     private void addFriendCheckmarks() {
         contact.getQuery().findInBackground(new FindCallback<ParseUser>() {
@@ -184,12 +155,11 @@ public class EditContactActivity extends AppCompatActivity implements AdapterVie
 
                         for (ParseUser friend : friends) {
                             if (friend.getObjectId().equals(user.getObjectId())) {
-                                lv.setItemChecked(i, true);
+                                listView.setItemChecked(i, true);
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     Log.e("Error", e.getMessage());
                 }
             }

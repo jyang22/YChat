@@ -51,9 +51,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ParseUser currentUser;
     ParseRelation<ParseObject> contactRelation;
     List<ParseObject> mUsers = new ArrayList<>();
-
-//    protected List<ParseObject> mContacts;
-//    protected List<ParseObject> mMessages;
     protected ListView listView;
 
     @Override
@@ -70,22 +67,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-        contactRelation = currentUser.getRelation("contact");
-        ParseQuery contactQuery = contactRelation.getQuery();
-        try {
-            List<ParseObject> contacts = contactQuery.find();
-//            mUsers = contacts;
-            listView.setAdapter(new MessageAdapter(this, R.layout.message_item, contacts));
-        } catch (Exception e) {
-
-        }
+//        contactRelation = currentUser.getRelation("contact");
+//        ParseQuery contactQuery = contactRelation.getQuery();
+//        try {
+//            List<ParseObject> contacts = contactQuery.find();
+//            listView.setAdapter(new MessageAdapter(this, R.layout.message_item, contacts));
+//        } catch (Exception e) {
+//
+//        }
 
         // buttons
         Button btn_contact = (Button) findViewById(R.id.btn_contact);
         btn_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, EditContactActivity.class);
+                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
                 startActivity(intent);
             }
         });

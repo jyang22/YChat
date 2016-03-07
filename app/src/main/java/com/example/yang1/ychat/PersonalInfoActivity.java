@@ -41,7 +41,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
         btn_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PersonalInfoActivity.this, EditContactActivity.class);
+                Intent intent = new Intent(PersonalInfoActivity.this, ContactActivity.class);
                 startActivity(intent);
             }
         });
