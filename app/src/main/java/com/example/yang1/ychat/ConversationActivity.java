@@ -65,6 +65,9 @@ public class ConversationActivity extends AppCompatActivity {
         receiverName = intent.getStringExtra("receiverName");
         listView = (ListView) findViewById(R.id.message_listview);
 
+        // set the title
+        getSupportActionBar().setTitle(receiverName);
+
         buttonSend = (Button) findViewById(R.id.send_btn);
 
         chatText = (EditText) findViewById(R.id.message_edittext);
@@ -134,7 +137,7 @@ public class ConversationActivity extends AppCompatActivity {
             message2.put("text", text);
             message2.put("sendByUser", false);
 
-            message1.saveInBackground(new SaveCallback() {
+            message2.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {

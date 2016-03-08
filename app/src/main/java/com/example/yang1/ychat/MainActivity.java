@@ -66,16 +66,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             navigateToLogin();
         }
 
-
-//        contactRelation = currentUser.getRelation("contact");
-//        ParseQuery contactQuery = contactRelation.getQuery();
-//        try {
-//            List<ParseObject> contacts = contactQuery.find();
-//            listView.setAdapter(new MessageAdapter(this, R.layout.message_item, contacts));
-//        } catch (Exception e) {
-//
-//        }
-
         // buttons
         Button btn_contact = (Button) findViewById(R.id.btn_contact);
         btn_contact.setOnClickListener(new View.OnClickListener() {

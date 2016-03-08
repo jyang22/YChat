@@ -46,10 +46,6 @@ public class ConversationAdapter extends ArrayAdapter<ParseObject> {
         return this.messages.size();
     }
 
-//    public Conversation getItem(int index) {
-//        return this.messages.get(index);
-//    }
-
     public View getView(int position, View convertView, ViewGroup parent) {
         ParseObject messageObj = getItem(position);
         View row;
@@ -66,6 +62,7 @@ public class ConversationAdapter extends ArrayAdapter<ParseObject> {
         if (messageObj.getString("fileType").equals("text")) {
             chatImage.setVisibility(View.GONE);
             chatText.setText(messageObj.getString("text"));
+//            chatText.setBackgroundColor(0xFFFFFFFF);
         } else {
             chatText.setVisibility(View.GONE);
             // get file
@@ -73,6 +70,7 @@ public class ConversationAdapter extends ArrayAdapter<ParseObject> {
             String imageUrl = file.getUrl();
             Uri imageUri = Uri.parse(imageUrl);
             Picasso.with(context).load(imageUri.toString()).into(chatImage);
+//            chatImage.setBackgroundColor(0xFFFFFFFF);
         }
         return row;
     }

@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Chat"
             android:id="@+id/btn_chat"
-            android:background="#FFFFFF" />
+            android:background="@null" />
 
         <Button
             android:layout_width="0dp"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Contact"
             android:id="@+id/btn_contact"
-            android:background="#FFFFFF"/>
+            android:background="@null"/>
 
         <Button
             android:layout_width="0dp"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:text="Me"
             android:id="@+id/btn_me"
-            android:background="#FFFFFF"/>
+            android:background="@null"/>
 
     </LinearLayout>
 

@@ -7,12 +7,12 @@
         android:id="@+id/menu_edit_contact"
         android:title="Edit Contact"
         android:orderInCategory="120"
-        app:showAsAction="always|withText"/>
+        app:showAsAction="never|withText"/>
 
     <item
         android:id="@+id/menu_logout"
         android:title="Logout"
         android:orderInCategory="120"
-        app:showAsAction="always|withText"/>
+        app:showAsAction="never|withText"/>
 
 </menu>

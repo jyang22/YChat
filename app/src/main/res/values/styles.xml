@@ -6,6 +6,11 @@
         <item name="colorPrimary">#444444</item>
         <item name="colorPrimaryDark">#333333</item>
         <item name="colorAccent">#999999</item>
+        <item name="android:actionBarStyle">@style/AppActionBarTheme</item>
+    </style>
+
+    <style name="AppActionBarTheme" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:windowActionModeOverlay">true</item>
     </style>
 
 </resources>

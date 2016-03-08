@@ -93,7 +93,7 @@ public class EditContactActivity extends AppCompatActivity implements AdapterVie
                             android.R.layout.simple_list_item_checked,
                             usernames);
                     lv.setAdapter(adapter);
-
+                    lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
                     addFriendCheckmarks();
 
                 } else {
@@ -149,29 +149,6 @@ public class EditContactActivity extends AppCompatActivity implements AdapterVie
             }
         });
     }
-
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        super.onListItemClick(l, v, position, id);
-//
-//        if (getListView().isItemChecked(position)) {
-//            // add the friend
-//            contact.add(users.get(position));
-//        }
-//        else {
-//            // remove the friend
-//            contact.remove(users.get(position));
-//        }
-//
-//        curUser.saveInBackground(new SaveCallback() {
-//            @Override
-//            public void done(ParseException e) {
-//                if (e != null) {
-//                    Log.e("Error", e.getMessage());
-//                }
-//            }
-//        });
-//    }
 
     private void addFriendCheckmarks() {
         contact.getQuery().findInBackground(new FindCallback<ParseUser>() {

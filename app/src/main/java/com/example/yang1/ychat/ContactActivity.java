@@ -25,7 +25,7 @@ public class ContactActivity extends AppCompatActivity implements AdapterView.On
 
     ListView listView;
     ParseUser curUser;
-    ParseRelation contact;
+    ParseRelation<ParseUser> contact;
     List<ParseUser> users;
 
     @Override
@@ -116,8 +116,6 @@ public class ContactActivity extends AppCompatActivity implements AdapterView.On
             });
             //
             contact.add(users.get(position));
-//            listView.setItemChecked(position, true);
-//            Toast.makeText(ContactActivity.this, String.valueOf(listView.isItemChecked(position)) + "one", Toast.LENGTH_LONG).show();
         } else {
             // remove the friend
             listView.clearFocus();
