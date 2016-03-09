@@ -85,7 +85,6 @@ public class ContactActivity extends AppCompatActivity implements AdapterView.On
                             usernames);
                     listView.setAdapter(adapter);
                     listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                    listView.setItemChecked(2, true);
                     listView.setItemsCanFocus(false);
                     addFriendCheckmarks();
 
@@ -103,35 +102,15 @@ public class ContactActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-        if (!listView.isItemChecked(position)) {
-            //
-            listView.clearFocus();
-            listView.post(new Runnable() {
-                @Override
-                public void run() {
-                    listView.requestFocusFromTouch();
-                    listView.setSelection(position);
-                    listView.requestFocus();
-                }
-            });
-            //
+        if (listView.isItemChecked(position)) {
+            // add relation
             contact.add(users.get(position));
+            Toast.makeText(ContactActivity.this, "added", Toast.LENGTH_LONG).show();
         } else {
             // remove the friend
-            listView.clearFocus();
-            listView.post(new Runnable() {
-                @Override
-                public void run() {
-                    listView.requestFocusFromTouch();
-                    listView.setSelection(position);
-                    listView.requestFocus();
-                }
-            });
             contact.remove(users.get(position));
-//            listView.setItemChecked(position, false);
-//            Toast.makeText(ContactActivity.this,  "two", Toast.LENGTH_LONG).show();
+            Toast.makeText(ContactActivity.this, "removed", Toast.LENGTH_LONG).show();
         }
-
         curUser.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
