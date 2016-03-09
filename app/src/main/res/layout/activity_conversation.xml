@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="5"
-        android:background="#FFFFFF">
+        android:background="@drawable/input_bar">
 
         <EditText
             android:id="@+id/message_edittext"
