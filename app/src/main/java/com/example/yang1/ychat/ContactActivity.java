@@ -129,7 +129,7 @@ public class ContactActivity extends AppCompatActivity implements AdapterView.On
             });
             contact.remove(users.get(position));
 //            listView.setItemChecked(position, false);
-//            Toast.makeText(ContactActivity.this, String.valueOf(listView.isItemChecked(position)) + "two", Toast.LENGTH_LONG).show();
+//            Toast.makeText(ContactActivity.this,  "two", Toast.LENGTH_LONG).show();
         }
 
         curUser.saveInBackground(new SaveCallback() {

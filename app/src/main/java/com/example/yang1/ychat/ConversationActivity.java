@@ -234,6 +234,7 @@ public class ConversationActivity extends AppCompatActivity {
             message1.put("fileType", "image");
             message1.put("receiverName", receiverName);
             message1.put("sendByUser", true);
+            message1.put("text", "image");
 
             byte[] fileBytes = FileHelper.getByteArrayFromFile(this, mMediaUri);
             fileBytes = FileHelper.reduceImageForUpload(fileBytes);
@@ -259,6 +260,7 @@ public class ConversationActivity extends AppCompatActivity {
             message2.put("text", text);
             message2.put("sendByUser", false);
             message2.put("file", file);
+            message2.put("text", "image");
             message2.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
