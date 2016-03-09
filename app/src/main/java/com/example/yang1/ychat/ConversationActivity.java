@@ -246,7 +246,6 @@ public class ConversationActivity extends AppCompatActivity {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        Toast.makeText(ConversationActivity.this, "Message sent", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -255,17 +254,17 @@ public class ConversationActivity extends AppCompatActivity {
             // should be receiver id
             message2.put("senderId", ParseUser.getCurrentUser().getObjectId());
             message2.put("senderName", receiverName);
-            message2.put("fileType", "text");
+            message2.put("fileType", "image");
             message2.put("receiverName", ParseUser.getCurrentUser().getUsername());
-            message2.put("text", text);
             message2.put("sendByUser", false);
             message2.put("file", file);
             message2.put("text", "image");
+
             message2.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        Toast.makeText(ConversationActivity.this, "Message sent", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConversationActivity.this, "Message sent22222", Toast.LENGTH_LONG).show();
                     }
                 }
             });
