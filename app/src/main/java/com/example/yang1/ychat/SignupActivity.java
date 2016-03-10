@@ -60,19 +60,20 @@ public class SignupActivity extends Activity{
                     newUser.setUsername(username);
                     newUser.setPassword(password);
                     newUser.setEmail(email);
+
                     // set avatar
-//                    Drawable drawable = getResources().getDrawable(R.drawable.avatar) ;
-//                    Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-//                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//                    byte[] data = stream.toByteArray();
-//                    ParseFile file  = new ParseFile("default_avatar.png", data);
-//                    newUser.put("avatar", file);
-//                    try {
-//                        file.save();
-//                    } catch (Exception e) {
-//
-//                    }
+                    Drawable drawable = getResources().getDrawable(R.drawable.avatar) ;
+                    Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] data = stream.toByteArray();
+                    ParseFile file  = new ParseFile("default_avatar.png", data);
+                    newUser.put("avatar", file);
+                    try {
+                        file.save();
+                    } catch (Exception e) {
+
+                    }
 
                     newUser.signUpInBackground(new SignUpCallback() {
                         @Override

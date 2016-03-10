@@ -93,23 +93,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         contactRelation = currentUser.getRelation("contact");
         ParseQuery contactQuery = contactRelation.getQuery();
-//        try {
-//            List<ParseObject> contacts = contactQuery.find();
-//            mUsers = contacts;
-//            listView.setAdapter(new MessageAdapter(this, R.layout.message_item, mUsers));
-//        } catch (Exception e) {
-//
-//        }
-        contactQuery.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> contacts, ParseException e) {
-                if (e == null) {
-                    mUsers = contacts;
-                    listView.setAdapter(new MessageAdapter(MainActivity.this, R.layout.message_item, mUsers));
-                } else {
-                    // Something went wrong.
-                }
-            }
-        });
+        try {
+            List<ParseObject> contacts = contactQuery.find();
+            mUsers = contacts;
+            listView.setAdapter(new MessageAdapter(this, R.layout.message_item, mUsers));
+        } catch (Exception e) {
+
+        }
+//        contactQuery.findInBackground(new FindCallback<ParseObject>() {
+//            public void done(List<ParseObject> contacts, ParseException e) {
+//                if (e == null) {
+//                    mUsers = contacts;
+//                    listView.setAdapter(new MessageAdapter(MainActivity.this, R.layout.message_item, mUsers));
+//                } else {
+//                    // Something went wrong.
+//                }
+//            }
+//        });
     }
 
     @Override

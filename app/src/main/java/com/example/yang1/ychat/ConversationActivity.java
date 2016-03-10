@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -48,6 +50,7 @@ public class ConversationActivity extends AppCompatActivity {
     List<ParseObject> messages;
     File imageFile;
     String albumName = "Project3";
+    ConversationAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +103,12 @@ public class ConversationActivity extends AppCompatActivity {
             @Override
             public void done(List<ParseObject> messages, ParseException e) {
                 if (e == null) {
-
-                    listView.setAdapter(new ConversationAdapter(ConversationActivity.this, R.layout.right, messages));
+//                    listView.setAdapter(new ConversationAdapter(ConversationActivity.this, R.layout.right, messages));
+                    adapter = new ConversationAdapter(ConversationActivity.this,
+                            R.layout.right,
+                            messages);
+                    listView.setAdapter(adapter);
+//                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -148,6 +155,11 @@ public class ConversationActivity extends AppCompatActivity {
 
             chatText.setText("");
             side = !side;
+
+            //
+            finish();
+            startActivity(getIntent());
+            //
             return true;
         }
         return false;
@@ -268,6 +280,9 @@ public class ConversationActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            finish();
+            startActivity(getIntent());
 
         } catch (Exception e) {
             e.printStackTrace();
