@@ -55,18 +55,19 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
+        android:textSize="15dp"
         android:id="@+id/textView_email"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView_username"
         android:layout_marginTop="20dp" />
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:longClickable="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/avatar"
         android:layout_below="@+id/textView_username"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp" />
-
 
 </RelativeLayout>

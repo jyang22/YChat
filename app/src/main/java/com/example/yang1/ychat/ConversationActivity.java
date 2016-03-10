@@ -202,11 +202,11 @@ public class ConversationActivity extends AppCompatActivity {
         // Same as Environment.getExternalStorageDirectory() + "/Pictures/" + albumName
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), albumName);
         if (file.exists()) {
-            Log.d("jsun", "Album directory exists");
+            Log.d("y", "Album directory exists");
         } else if (file.mkdirs()) {
-            Log.i("jsun", "Album directory is created");
+            Log.i("y", "Album directory is created");
         } else {
-            Log.e("jsun", "Failed to create album directory.  Check permissions and storage.");
+            Log.e("y", "Failed to create album directory.  Check permissions and storage.");
         }
         return file;
     }
