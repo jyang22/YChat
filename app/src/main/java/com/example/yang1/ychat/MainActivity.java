@@ -144,9 +144,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 navigateToLogin();
                 break;
 
-            case R.id.menu_edit_contact:
-                Intent intent = new Intent(MainActivity.this,EditContactActivity.class);
-                startActivity(intent);
+//            case R.id.menu_edit_contact:
+//                Intent intent = new Intent(MainActivity.this,EditContactActivity.class);
+//                startActivity(intent);
+//                break;
+
+            case R.id.action_uninstall:
+                // uninstall
+                Uri packageURI = Uri.parse("package:com.example.yang1.ychat");
+                Intent uninstallIntent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE, packageURI);
+                startActivity(uninstallIntent);
                 break;
         }
         return true;
