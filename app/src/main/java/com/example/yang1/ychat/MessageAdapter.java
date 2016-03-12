@@ -84,14 +84,14 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             } else {
                 mMessages = new String[1];
                 mMessages[0] = "...";
-                holder.firstMessage.setText(mMessages[mMessages.length - 1]);
+//                holder.firstMessage.setText(mMessages[mMessages.length - 1]);
             }
         } catch (Exception e) {
         }
 
         // set the sender name
         holder.nameLabel.setText(user.getString("username"));
-//        holder.firstMessage.setText(mMessages[mMessages.length - 1]);
+        holder.firstMessage.setText(mMessages[mMessages.length - 1]);
 
         // set the image thumbnail
         ParseFile file = user.getParseFile("avatar");
